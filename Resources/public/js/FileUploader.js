@@ -10,19 +10,20 @@ function PunkAveFileUploader(options)
   var fileTemplate = _.template($('#file-uploader-file-template').html().trim()),
     editor = $el.find('[data-files="1"]'),
     thumbnails = $el.find('[data-thumbnails="1"]');
-  
+
   self.uploading = false;
-  
+
   self.errorCallback = 'errorCallback' in options ? options.errorCallback : function( info ) { if (window.console && console.log) { console.log(info) } },
 
   self.addExistingFiles = function(files)
   {
     _.each(files, function(file) {
+        console.log(file);
       appendEditableImage({
         // cmsMediaUrl is a global variable set by the underscoreTemplates partial of MediaItems.html.twig
-        'thumbnail_url': viewUrl + '/thumbnails/' + file,
-        'url': viewUrl + '/originals/' + file,
-        'name': file
+        'thumbnail_url': file.thumbnail_url,
+        'url': file.url,
+        'name': file.name
         });
     });
   };
@@ -119,7 +120,7 @@ function PunkAveFileUploader(options)
     var newAdditionalURL = "";
     var tempArray = url.split("?");
     var baseURL = tempArray[0];
-    var additionalURL = tempArray[1]; 
+    var additionalURL = tempArray[1];
     var temp = "";
     if (additionalURL)
     {
