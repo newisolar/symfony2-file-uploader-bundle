@@ -5,6 +5,8 @@ function PunkAveFileUploader(options)
     viewUrl = options.viewUrl,
     $el = $(options.el),
     uploaderTemplate = _.template($('#file-uploader-template').html().trim());
+    fileUploadSuccessCallback = options.fileUploadSuccessCallback,
+    uploaderTemplate = _.template($('#file-uploader-template').html());
   $el.html(uploaderTemplate({}));
 
   var fileTemplate = _.template($('#file-uploader-file-template').html().trim()),
@@ -74,6 +76,7 @@ function PunkAveFileUploader(options)
         _.each(data.result, function(item) {
           appendEditableImage(item);
         });
+        fileUploadSuccessCallback();
       }
     },
     start: function (e) {
@@ -93,8 +96,8 @@ function PunkAveFileUploader(options)
   {
     if (info.error)
     {
-      self.errorCallback(info);
-      return;
+        self.errorCallback(info);
+        return;
     }
     var li = $(fileTemplate(info));
     li.find('[data-action="delete"]').click(function(event) {
