@@ -24,7 +24,8 @@ function PunkAveFileUploader(options)
         // cmsMediaUrl is a global variable set by the underscoreTemplates partial of MediaItems.html.twig
         'thumbnail_url': file.thumbnail_url,
         'url': file.url,
-        'name': file.name
+        'name': file.name,
+        'delete_url': file.delete_url
         });
     });
   };
@@ -105,7 +106,7 @@ function PunkAveFileUploader(options)
       var name = file.attr('data-name');
       $.ajax({
         type: 'delete',
-        url: setQueryParameter(uploadUrl, 'file', name),
+        url: setQueryParameter(info.delete_url, 'file', name),
         success: function() {
           file.remove();
         },
