@@ -87,6 +87,9 @@ function PunkAveFileUploader(options)
     stop: function (e) {
       $el.find('[data-spinner="1"]').hide();
       self.uploading = false;
+    },
+    fail: function (e, data) {
+        self.errorCallback(data);
     }
   });
 
