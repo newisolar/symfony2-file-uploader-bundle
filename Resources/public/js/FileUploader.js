@@ -25,7 +25,10 @@ function PunkAveFileUploader(options)
         'thumbnail_url': file.thumbnail_url,
         'url': file.url,
         'name': file.name,
-        'delete_url': file.delete_url
+        'delete_url': file.delete_url,
+        'category': file.category,
+        'id': file.id,
+        'description': file.description
         });
     });
   };
