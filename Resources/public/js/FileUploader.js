@@ -106,6 +106,9 @@ function PunkAveFileUploader(options)
         self.errorCallback(info);
         return;
     }
+
+    $($el).find('[data-name="' + info.name + '"]').remove();
+
     var li = $(fileTemplate(info));
     li.find('[data-action="delete"]').click(function(event) {
       var file = $(this).closest('[data-name]');
