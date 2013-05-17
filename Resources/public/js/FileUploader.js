@@ -4,8 +4,9 @@ function PunkAveFileUploader(options)
     uploadUrl = options.uploadUrl,
     viewUrl = options.viewUrl,
     $el = $(options.el),
-    uploaderTemplate = _.template($('#file-uploader-template').html().trim());
+    uploaderTemplate = _.template($('#file-uploader-template').html().trim()),
     fileUploadSuccessCallback = options.fileUploadSuccessCallback,
+    fileUploadStartCallback = options.fileUploadStartCallback,
     uploaderTemplate = _.template($('#file-uploader-template').html());
   $el.html(uploaderTemplate({}));
 
@@ -93,6 +94,12 @@ function PunkAveFileUploader(options)
     },
     fail: function (e, data) {
         self.errorCallback(data);
+    },
+    add: function(e, data) {
+        fileUploadStartCallback(data);
+//    },
+//    submit: function(e, data) {
+//        return false;
     }
   });
 
