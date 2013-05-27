@@ -97,9 +97,14 @@ function PunkAveFileUploader(options)
     },
     add: function(e, data) {
         fileUploadStartCallback(data);
-//    },
-//    submit: function(e, data) {
-//        return false;
+    },
+    destroy: function(e, data) {
+        console.log(data);
+        console.log('destory');
+    },
+    destroyed: function(e, data) {
+      console.log(data);
+      console.log('destory');
     }
   });
 
@@ -120,10 +125,13 @@ function PunkAveFileUploader(options)
     li.find('[data-action="delete"]').click(function(event) {
       var file = $(this).closest('[data-name]');
       var name = file.attr('data-name');
+        console.log(file);
       $.ajax({
         type: 'delete',
         url: setQueryParameter(info.delete_url, 'file', name),
-        success: function() {
+        success: function(data) {
+            console.log(data);
+            console.log(file);
           file.remove();
         },
         dataType: 'json'
